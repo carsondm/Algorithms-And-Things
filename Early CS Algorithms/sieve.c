@@ -1,3 +1,5 @@
+// Day 1 of 60LOCAD
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
@@ -11,7 +13,7 @@ int sieve(int max, int v) {
 		oneToMax[i] = i;
 	}
 	
-	// Run the sieve
+	// Run the sieve -- this is the first version, much slower than below
 	// for(i = 2; i < max; i++) {
 	// 	for(j = i; j * i < max; j++) {
 	// 		oneToMax[j*i] = 1;
@@ -37,7 +39,7 @@ int sieve(int max, int v) {
 	// 	}
 	// }
 
-	// 
+	// Count the primes and print them out
 	if( v ) printf("2, ");
 	for(i = 1; i < max; i+=2) {
 		if( oneToMax[i] != 1 ){
@@ -50,6 +52,7 @@ int sieve(int max, int v) {
 	return numberOfPrimes;
 }
 
+// I was getting segfaults, this was to make sure I wasn't going crazy and forgetting how C works
 void reallyBigArray(int s, int v) {
 	int *arr = calloc(s, sizeof(int)), n, i;
 	for(i = 0; i < s; i++) {
@@ -64,7 +67,6 @@ int main(int argc, char ** argv) {
 	if(argc > 2) v = atoi( argv[2] );
 
 	printf("Number of Primes -- %d\n", sieve(targetNumber, v));
-	// reallyBigArray(targetNumber, v);
 
 	return 1; 
 }
